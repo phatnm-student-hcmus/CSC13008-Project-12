@@ -1,4 +1,4 @@
-$.getScript("./client.js")
+$.getScript("/js/client.js")
 var canvas, ctx, flag = false,
     prevX = 0,
     currX = 0,
@@ -125,6 +125,7 @@ function drawDot() {
     console.log(radius);
     ctx_temp.beginPath();
     ctx_temp.fillStyle = x;
+    ctx_temp.strokeStyle = 'green'
     ctx_temp.arc(currX, currY, radius, 0, Math.PI * 2);
     ctx_temp.fill();
     ctx_temp.closePath();
@@ -133,7 +134,7 @@ function drawDot() {
         'radius': radius,
         "currX": currX,
         "currY": currY,
-        "fillstyle": x
+        "fillStyle": x
     });
 }
 

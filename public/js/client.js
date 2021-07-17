@@ -73,6 +73,7 @@ function applyContext(data) {
 }
 
 function applyDot(data){
+    console.log(data);
     let r = data.radius, 
     cX = data.currX;
     cY = data.currY,
