@@ -10,7 +10,7 @@ window.requestAnimFrame = (function (callback) {
         };
 })();
 
-var socket = io("http://localhost:3000/");
+var socket = io("https://co-op-whiteboard.herokuapp.com/");
 
 $(document).ready(function () {
     socket.on("Server-send-ctx", function (ctx) {
