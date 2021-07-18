@@ -10,11 +10,11 @@ const authCheck = (req, res, next) => {
 
 router.get('/', authCheck, (req, res) => {
     console.log(req.user.name);
-    res.render('home')
+    res.render('home', {user: req.user})
 });
 
 router.get('/:name', authCheck, (req, res) => { 
     console.log(req.user.name);
-    res.render('home')
+    res.render('home', {user: req.user})
 })
 module.exports = router
