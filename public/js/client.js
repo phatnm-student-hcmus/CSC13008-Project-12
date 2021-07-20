@@ -10,9 +10,7 @@ window.requestAnimFrame = (function (callback) {
         };
 })();
 
-var myURL = require('../config/myURL').myURL
-console.log(myURL);
-var socket = io(myURL);
+var socket = io('https://co-op-whiteboard.herokuapp.com');
 
 $(document).ready(() => {
     socket.on("Server-send-dataURL", (dataURL) => {

@@ -1,25 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
-    <title>Co-op whiteboard</title>
+    <title>Sync</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Stint+Ultra+Expanded" rel="stylesheet">
     <script src="/js/jquery.js" type="text/javascript"></script>
+    <!-- <script src="https://co-op-whiteboard-ngominhphat.herokuapp.com/socket.io/socket.io.js"></script> -->   
+    <script src="/js/canvas.js" type="text/javascript"></script>
     <script src='https://co-op-whiteboard.herokuapp.com/socket.io/socket.io.js'></script>
 </head>
 <!-- canvas-->
 
 <body onload="init()">
-    <div id="info">
-        Welcome <b><%= user.name%></b>
-        <img style="height: 20px" src=<%= user.avtURL%>>
-    </div>
+    <div id="info">Welcome <b><%= user.name%></b><img src=<%= user.avtURL%> alt="" srcset=""></div>
     <a href="/auth/logout">Logout</a>
     <div id="bodyContainer">
-        <canvas id="can" width="1000" height="500" style="position:absolute;top:10%;left:10%;border:2px solid;"></canvas>
+        <canvas id="can" width="300" height="500" style="position:absolute;top:10%;left:10%;border:2px solid;"></canvas>
         <div style="position:absolute;top:12%;left:43%;">Choose Color</div>
         <div style="position:absolute;top:15%;left:45%;width:10px;height:10px;background:green;" id="green"
             onclick="color(this)"></div>
@@ -36,6 +35,9 @@
         <div style="position:absolute;top:20%;left:43%;">Eraser</div>
         <div style="position:absolute;top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;"
             id="white" onclick="color(this)"></div>
+        <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">
+        <input type="button" value="save" id="btn" size="30" onclick="save()"
+            style="position:absolute;top:55%;left:10%;">
         <input type="button" value="clear" id="clr" size="23" onclick="erase()"
             style="position:absolute;top:55%;left:15%;">
         <div id="lineWidth"><input type="number" name="lineWidth" id="lineWidth_input"><button id="change-size" onclick="size()">Change Size</button></div>
