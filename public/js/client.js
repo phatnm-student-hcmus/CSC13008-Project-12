@@ -11,7 +11,7 @@ window.requestAnimFrame = (function (callback) {
 })();
 
 var myURL = require('../config/myURL').myURL
-
+console.log(myURL);
 var socket = io(myURL);
 
 $(document).ready(() => {
