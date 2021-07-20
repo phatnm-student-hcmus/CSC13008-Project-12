@@ -10,11 +10,13 @@ const boardRouter = require('../routes/board-routes')
 const passportSetup = require('../config/passport-setup')
 const keys = require('../config/keys')
 
-
 //set up mongodb
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://nmphat-mongodb:v!npXf9X277i_XQ@test.vhxrf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-    { useNewUrlParser: true, useUnifiedTopology: true },
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    },
     (err) => {
         if (!err) {
             console.log('ket noi database thanh cong');
@@ -43,19 +45,21 @@ app.use(session({
 }))
 
 
-//passport init
+// * passport init
 app.use(passport.initialize());
 app.use(passport.session());
 
 
-//set up routes
+// * set up routes
 app.use(express.static("public"));
 app.use('/auth', authRouter)
 app.use('/board', boardRouter)
 
-//socket.io server listioning
+//socket.io server listening
 server.listen(process.env.PORT || port);
 
+
+// 
 io.on("connection", function (socket) {
     console.log(socket.id, " vua ket noi");
     socket.emit("Server-send-dataURL", dataURL_saving);
@@ -83,4 +87,3 @@ io.on("connection", function (socket) {
 app.get("/", function (req, res) {
     res.render('login');
 });
-

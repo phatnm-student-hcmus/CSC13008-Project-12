@@ -10,19 +10,16 @@ window.requestAnimFrame = (function (callback) {
         };
 })();
 
-var socket = io("https://co-op-whiteboard.herokuapp.com/");
+var myURL = require('../config/myURL').myURL
 
-$(document).ready(function () {
-    socket.on("Server-send-ctx", function (ctx) {
-        // console.log("receive ctx")
-        ctx.stroke();
-    });
+var socket = io(myURL);
 
-    socket.on("Server-send-dataURL", function (dataURL) {
+$(document).ready(() => {
+    socket.on("Server-send-dataURL", (dataURL) => {
         deserialize(dataURL, canvas);
     });
 
-    socket.on("Server-send-context-as-json", function (data) {
+    socket.on("Server-send-context-as-json", (data) => {
         // console.log("Client receive ctx json");
         applyContext(data);
     });
@@ -91,7 +88,7 @@ function applyDot(data){
 
 function sendContextJson(json) {
     socket.emit("Client-send-context-as-json", json);
-    // console.log("client send ctx json");
+    // ? console.log("client send ctx json");
 }
 
 function sendDotJason(json) {
