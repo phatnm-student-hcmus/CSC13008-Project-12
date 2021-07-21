@@ -6,11 +6,14 @@ var canvas, ctx, flag = false,
     currY = 0,
     dot_flag = false;
 
+// x: color
+// y: line_width
 var x = "black",
     y = 2;
 
 var ongoingTouches = [];
 
+//* initialize canvas
 function init() {
     canvas = document.getElementById('can');
     ctx = canvas.getContext("2d");
@@ -63,7 +66,8 @@ function init() {
 function sendNoti(what) {
     socket.emit("s", what);
 }
-//chose color
+
+//* chose color
 function color(obj) {
     switch (obj.id) {
         case "green":
@@ -93,9 +97,13 @@ function color(obj) {
 
 }
 
+//* set line width
 function size() {
     y = $("#lineWidth_input").val();
 }
+
+//!draw 
+//todo: draw smooth line => use quadraticCurveTo 
 function draw() {
     ctx.beginPath();
     ctx.moveTo(prevX, prevY);
@@ -142,7 +150,6 @@ function erase() {
     var m = confirm("Want to clear");
     if (m) {
         ctx.clearRect(0, 0, w, h);
-        document.getElementById("canvasimg").style.display = "none";
         console.log("clear all");
         socket.emit("Client-clear-all");
         // sendDataURL();
@@ -156,6 +163,7 @@ function save() {
     document.getElementById("canvasimg").style.display = "inline";
 }
 
+//* find mouse offset and call "draw" function
 function findxy(res, e) {
     if (res == 'down') {
         prevX = currX;
@@ -184,7 +192,6 @@ function findxy(res, e) {
                 drawDot();
             }
             draw();
-
         }
     }
 }

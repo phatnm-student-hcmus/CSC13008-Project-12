@@ -1,3 +1,3 @@
 module.exports = {
-    myURL: 'http://localhost:3000'
+    myURL: 'http//localhost:3000'
 }
