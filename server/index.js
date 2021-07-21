@@ -59,7 +59,7 @@ app.use('/board', boardRouter)
 server.listen(process.env.PORT || port);
 
 
-// 
+// * server and client
 io.on("connection", function (socket) {
     console.log(socket.id, " vua ket noi");
     socket.emit("Server-send-dataURL", dataURL_saving);

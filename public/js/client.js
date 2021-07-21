@@ -1,4 +1,4 @@
-// Get a regular interval for drawing to the screen
+//* Get a regular interval for drawing to the screen
 window.requestAnimFrame = (function (callback) {
     return window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
@@ -6,10 +6,11 @@ window.requestAnimFrame = (function (callback) {
         window.oRequestAnimationFrame ||
         window.msRequestAnimaitonFrame ||
         function (callback) {
-            window.setTimeout(callback, 1000 / 60);
+            window.setTimeout(callback, 1000 / 60); //* 60fps
         };
 })();
 
+//! socket.io listea at https://co-op-whiteboard.herokuapp.com
 var socket = io('https://co-op-whiteboard.herokuapp.com');
 
 $(document).ready(() => {
@@ -34,10 +35,12 @@ function sendDataURL() {
     let dataURL_ = canvas.toDataURL();
     socket.emit("Client-send-dataURL", dataURL_);
 }
+
 function sendContext(line) {
     socket.emit("Client-send-context", line);
 }
 
+// deserialize dataURL to image and apply to casvas
 function deserialize(data, canvas) {
     var img = new Image();
     img.onload = function () {
@@ -49,6 +52,7 @@ function deserialize(data, canvas) {
     img.src = data;
 }
 
+//apply (draw) canvas contex to canvas
 function applyContext(data) {
     let pX, pY, cX, cY;
     pX = data.prevX;
@@ -64,9 +68,11 @@ function applyContext(data) {
     ctx.stroke();
     ctx.closePath();
 
-    // console.log("apply ctx successfully");
+    //// console.log("apply ctx successfully");
 }
 
+
+//apply (draw) a dot to canvas
 function applyDot(data){
     console.log(data);
     let r = data.radius, 
@@ -84,11 +90,13 @@ function applyDot(data){
     ctx_temp.closePath();
 }
 
+// send a context properties to server
 function sendContextJson(json) {
     socket.emit("Client-send-context-as-json", json);
     // ? console.log("client send ctx json");
 }
 
+//send a dot properties to server
 function sendDotJason(json) {
     socket.emit("Client-send-dot-as-json", json)
 }
