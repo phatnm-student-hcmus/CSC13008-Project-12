@@ -4,8 +4,8 @@ module.exports = {
         clientSecret: '4uPnaJhcBsy96K8kOHeALoSy'
     },
     facebook: {
-        clientID: '',
-        clientSecret: ''
+        clientID: '709807233131624',
+        clientSecret: 'c6410d8be348633dddcf1b6e01127ee7'
     },
     session: {
         secret: 'NetScape'

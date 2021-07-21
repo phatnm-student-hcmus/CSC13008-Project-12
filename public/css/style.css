@@ -3,3 +3,7 @@ html,
 body {
     overscroll-behavior-y: contain;
 }
+
+img {
+    height: 20px;
+}
